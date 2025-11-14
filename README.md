@@ -15,7 +15,20 @@ These examples come from trying to use Prometheus for telemetry data from an
 internet of things/remote sensing project, where scraping just wasn't working
 well.
 
+## Python
+
+This comes from [jzakhar][5]'s [Gist][6], with minor modifications, without 
+this the Ruby implementation (which was originally needed) couldn't have been
+possible.
+
+```
+$ python -m pip install -r requirements.txt
+$ python write.py
+```
+
 [1]: https://prometheus.io/
 [2]: https://prometheus.io/docs/introduction/overview/
 [3]: https://prometheus.io/docs/specs/prw/remote_write_spec/
 [4]: https://prometheus.io/docs/instrumenting/pushing/
+[5]: https://github.com/jzakhar
+[6]: https://gist.github.com/jzakhar/c61aaa64eacc6f048223902de04d1ffa
