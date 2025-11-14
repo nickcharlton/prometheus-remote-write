@@ -15,6 +15,24 @@ These examples come from trying to use Prometheus for telemetry data from an
 internet of things/remote sensing project, where scraping just wasn't working
 well.
 
+## Configuring Prometheus
+
+Remote write isn't enabled by default, so add to the arguments:
+
+```
+--web.enable-remote-write-receiver
+```
+
+This could be somewhere like:
+
+* `/etc/default/prometheus`
+* `/opt/homebrew/etc/prometheus.args`
+
+View metrics on: `http://localhost:9090`.
+
+The examples write a metric called `my_metric`, with a value of `18`, which you
+can just run in the expression browser to see the result.
+
 ## Python
 
 This comes from [jzakhar][5]'s [Gist][6], with minor modifications, without 
