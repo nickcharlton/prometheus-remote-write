@@ -26,9 +26,35 @@ $ python -m pip install -r requirements.txt
 $ python write.py
 ```
 
+## Ruby
+
+The Ruby version fairly closely follows the design of the Python version. It
+uses the [`protobuf` library][7] (a pure Ruby implementation of Protocol
+Buffers) as it's nicer to work with (and the Google library wouldn't work).
+It uses [Faraday][8] for the HTTP client mostly because
+[`prometheus-api-client`][9] does.
+
+The definitions were generated using the plugin as part of the Ruby `protobuf` 
+library:
+
+```
+protoc --plugin=protoc-gen-ruby-protobuf=$(which protoc-gen-ruby) --ruby-protobuf_out=lib -I definitions definitions/prometheus.pb.rb
+```
+
+## Implementation notes
+
+* You need the [`protobuf` tool][10] locally to compile `.proto` definitions 
+  locally
+* Timestamps are in millis (i.e.: unix timestamp * 1000)
+* Prometheus expects the metrics being sent to be in timestamp order
+
 [1]: https://prometheus.io/
 [2]: https://prometheus.io/docs/introduction/overview/
 [3]: https://prometheus.io/docs/specs/prw/remote_write_spec/
 [4]: https://prometheus.io/docs/instrumenting/pushing/
 [5]: https://github.com/jzakhar
 [6]: https://gist.github.com/jzakhar/c61aaa64eacc6f048223902de04d1ffa
+[7]: https://github.com/ruby-protobuf/protobuf
+[8]: https://github.com/lostisland/faraday
+[9]: https://github.com/prometheus/prometheus_api_client_ruby
+[10]: http://code.google.com/p/protobuf
